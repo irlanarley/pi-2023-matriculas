@@ -3,6 +3,12 @@
 {% block center %}
   <h2> Lista de Alunos</h2>
 
+    <form method="GET" action="">
+        <label>Nome: </label>
+        <input type="text" name="nome_aluno" placeholder="Pesquisar">
+        <input type="submit" value="Pesquisar">
+    </form>
+
   <a href="{% url 'aluno_criar' %}" class="btn btn-success mb-3">Novo Cadastro</a>
 
   <table class="table table-bordered">

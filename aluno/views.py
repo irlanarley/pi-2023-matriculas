@@ -36,7 +36,10 @@ def aluno_criar(request):
 
 
 def aluno_listar(request):
-    alunos = Aluno.objects.all()
+    if(request.GET.get('nome_aluno')):
+        alunos = Aluno.objects.filter(nome_aluno__icontains=request.GET.get('nome_aluno'))
+    else:
+        alunos = Aluno.objects.all()
     context ={
         'alunos':alunos
     }
