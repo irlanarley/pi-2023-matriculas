@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Aluno,Curso,Cidade
 from .forms import AlunoForm
+from .filters import AlunoFilter
 
 def aluno_editar(request,id):
     aluno = get_object_or_404(Aluno,id=id)
@@ -36,9 +37,12 @@ def aluno_criar(request):
 
 
 def aluno_listar(request):
+
     alunos = Aluno.objects.all()
+    alunos_filter = AlunoFilter(request.GET, queryset=alunos)
     context ={
-        'alunos':alunos
+        'alunos':alunos,
+        'filter':alunos_filter
     }
     return render(request, "aluno/alunos.html",context)
 

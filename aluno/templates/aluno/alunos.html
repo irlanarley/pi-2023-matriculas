@@ -2,7 +2,23 @@
 
 {% block center %}
   <h2> Lista de Alunos</h2>
-
+    <form class="d-flex" method="GET">
+    <div style="width:100%" class="d-flex flex-wrap justify-content-around">
+        <div class="d-flex gap-1 align-items-center">
+            <label for="{{ filter.form.nome_aluno.id_for_label }}"> Nome do aluno: </label>
+            {{ filter.form.nome_aluno }}
+        </div>
+         <div class="d-flex  gap-1 align-items-center">
+            <label for="{{ filter.form.cidade.id_for_label }}"> Cidade: </label>
+            {{ filter.form.cidade }}
+         </div>
+         <div class="d-flex  gap-1 align-items-center">
+            <label for="{{ filter.form.curso.id_for_label }}"> Curso: </label>
+            {{ filter.form.curso}}
+         </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
   <a href="{% url 'aluno_criar' %}" class="btn btn-success mb-3">Novo Cadastro</a>
 
   <table class="table table-bordered">
@@ -16,15 +32,15 @@
       </tr>
     </thead>
     <tbody>
-      {% for aluno in alunos %}  
+      {% for obj in filter.qs %}
       <tr>
-        <td>{{ aluno.nome_aluno }}</td>
-        <td>{{ aluno.email }}</td>
-        <td>{{ aluno.cidade.nome }}</td>
-        <td>{{ aluno.curso.nome }}</td>
+        <td>{{ obj.nome_aluno }}</td>
+        <td>{{ obj.email }}</td>
+        <td>{{ obj.cidade.nome }}</td>
+        <td>{{ obj.curso.nome }}</td>
         <td>
-          <a href="{% url 'aluno_editar' id=aluno.id %}" class="btn btn-primary btn-sm">Editar</a>
-          <a href="{% url 'aluno_remover' id=aluno.id %}" class="btn btn-danger btn-sm">Remover</a>
+          <a href="{% url 'aluno_editar' id=obj.id %}" class="btn btn-primary btn-sm">Editar</a>
+          <a href="{% url 'aluno_remover' id=obj.id %}" class="btn btn-danger btn-sm">Remover</a>
         </td>
       </tr>
       {% endfor %}

@@ -21,3 +21,6 @@ class Aluno(models.Model):
     cidade = models.ForeignKey(Cidade,on_delete=models.CASCADE)
     curso = models.ForeignKey(Curso,on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.nome_aluno
+
