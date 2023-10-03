@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import Aluno,Curso,Cidade
 from .forms import AlunoForm
 from .filters import AlunoFilter
+from django.core.paginator import Paginator
 
 def aluno_editar(request,id):
     aluno = get_object_or_404(Aluno,id=id)
@@ -38,11 +39,17 @@ def aluno_criar(request):
 
 def aluno_listar(request):
 
-    alunos = Aluno.objects.all()
-    alunos_filter = AlunoFilter(request.GET, queryset=alunos)
+    alunos = Aluno.objects.all().order_by('nome_aluno')
+
+    paginator = Paginator(alunos, 2)
+
+    pagina = request.GET.get('pagina')
+
+    pag_obj = paginator.get_page(pagina)
+
     context ={
-        'alunos':alunos,
-        'filter':alunos_filter
+
+        'pag_obj':pag_obj
     }
     return render(request, "aluno/alunos.html",context)
 
