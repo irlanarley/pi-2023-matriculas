@@ -20,7 +20,7 @@ class Aluno(models.Model):
     email = models.EmailField()
     cidade = models.ForeignKey(Cidade,on_delete=models.CASCADE)
     curso = models.ForeignKey(Curso,on_delete=models.CASCADE)
-
+    data_nascimento = models.DateField(blank=True,null=True)
     def __str__(self):
         return self.nome_aluno
 

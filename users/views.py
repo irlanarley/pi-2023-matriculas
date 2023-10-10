@@ -33,6 +33,7 @@ def create_user(request):
             user = form.save()
             user.is_active = True
             user.is_staff = True
+
             user.save()
             return redirect('login')
 
