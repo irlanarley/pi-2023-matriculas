@@ -26,7 +26,6 @@ urlpatterns = [
     path('aluno/editar/<int:id>/',aluno_editar, name='aluno_editar'),
     path('aluno/remover/<int:id>/',aluno_remover,name='aluno_remover'),
     path('aluno/listar',aluno_listar,name='aluno_listar'),
-    path('accounts/',include('users.urls')),
 
 ]
 

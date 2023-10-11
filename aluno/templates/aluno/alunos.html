@@ -9,6 +9,7 @@
         <thead>
         <tr>
             <th>Nome</th>
+            <th>Idade</th>
             <th>Email</th>
             <th>Cidade</th>
             <th>Curso</th>
@@ -16,9 +17,10 @@
         </tr>
         </thead>
         <tbody>
-        {% for obj in pag_obj %}
+        {% for obj in alunos %}
             <tr>
                 <td>{{ obj.nome_aluno }}</td>
+                <td>{{ obj.data_nascimento }}</td>
                 <td>{{ obj.email }}</td>
                 <td>{{ obj.cidade.nome }}</td>
                 <td>{{ obj.curso.nome }}</td>
@@ -33,20 +35,5 @@
         </tbody>
     </table>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            {% if pag_obj.has_previous %}
-                <li class="page-item"><a class="page-link"
-                                         href="?pagina={{ pag_obj.previous_page_number }}">anterior</a></li>
-            {% endif %}
 
-            {% for page in pag_obj.paginator.page_range %}
-            <li class="page-item"><a class="page-link" href="?pagina={{ page }}">{{ page }}</a></li>
-            {% endfor %}
-
-            {% if pag_obj.has_next %}
-                <li class="page-item"><a class="page-link" href="?pagina={{ pag_obj.next_page_number }}">próxima</a></li>
-            {% endif %}
-        </ul>
-    </nav>
 {% endblock %}
